@@ -11,6 +11,8 @@ if(isset($_POST['Text'])&&(trim($_POST['Text'])!=''))
 	$phptextObj = new letterAvatarClass();
 	
 	/*letterAvatar function to genrate image with text*/
-	echo $phptextObj->letterAvatar($text,100,260,260);
+	$result = $phptextObj->letterAvatar($text,100,260,260);
+
+	echo json_encode($result);
 } 
 ?>

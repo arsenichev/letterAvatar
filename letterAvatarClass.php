@@ -37,7 +37,7 @@ class letterAvatarClass
 		$folder = 'avatars/';
 
 		// File name and extension
-		$fileName = md5($text).'.jpg';
+		$fileName = md5($text).'.png';
 
 		// Text color
 		// Default - White
@@ -50,7 +50,7 @@ class letterAvatarClass
 		// if exist return the image
 		if(file_exists($folder.$fileName))
 		{
-			return json_encode(array('status'=>TRUE,'image'=>$folder.$fileName));
+			return array('status' => TRUE,'image' => $folder.$fileName);
 		}
 		
 		$im = imagecreatetruecolor($imgWidth, $imgHeight);	
@@ -64,9 +64,11 @@ class letterAvatarClass
 		imagefill($im,0,0,$backgroundColor);	
 		list($x, $y) = $this->ImageTTFCenter($im, $text, $font, $fontSize);	
 		imagettftext($im, $fontSize, 0, $x, $y, $textColor, $font, $text);
-		if(imagejpeg($im,$folder.$fileName,90)){/*save image as JPG*/
-			return json_encode(array('status'=>TRUE,'image'=>$folder.$fileName));
-		imagedestroy($im);	
+		
+		if(imagepng($im,$folder.$fileName)){
+			/*save image as PNG*/
+			return array('status' => TRUE,'image' => $folder.$fileName);
+			imagedestroy($im);	
 		}
 	}
 	
