@@ -1,2 +1,2 @@
 # letterAvatar
-Generate avatar by letters
+Generate avatar by first letters in username or email.
