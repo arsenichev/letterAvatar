@@ -25,15 +25,19 @@ class letterAvatarClass
 		// Example - Kannan m -> KM
 		$words = explode(" ", $text);
 		$text = "";
-		foreach ($words as $w) {
-		  $text .= strtoupper($w[0]);
+		foreach ($words as $i => $w) {
+		  $text .= mb_strtoupper(mb_substr($w, 0, 1, 'UTF-8'), 'UTF-8');
+
+		  if (mb_strlen($text, 'UTF-8') == 2) {
+		  	break;
+		  }
 		}
 
 		// Upload directory
 		$folder = 'avatars/';
 
 		// File name and extension
-		$fileName = $text.'.jpg';
+		$fileName = md5($text).'.jpg';
 
 		// Text color
 		// Default - White

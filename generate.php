@@ -5,7 +5,7 @@ include("./letterAvatarClass.php");
 if(isset($_POST['Text'])&&(trim($_POST['Text'])!=''))
 {
 	/*get texts first letter and convert to uppercase*/
-	$text=strtoupper(strip_tags($_POST['Text']));
+	$text=mb_strtoupper(strip_tags($_POST['Text']), 'UTF-8');
 	
 	/*create class object*/
 	$phptextObj = new letterAvatarClass();
